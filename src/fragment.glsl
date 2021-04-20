@@ -1,10 +1,6 @@
-#extension GL_OES_standard_derivatives : enable
-
 precision highp float;
 
 #pragma glslify: cookTorrance = require(glsl-specular-cook-torrance)
-//#pragma glslify: beckmann = require(glsl-specular-beckmann) // used in gl-surface3d
-
 #pragma glslify: outOfRange = require(glsl-out-of-range)
 
 uniform vec3 clipBounds[2];
@@ -19,7 +15,7 @@ varying vec3 f_normal
            , f_lightDirection
            , f_eyeDirection
            , f_data;
-varying vec3 f_color;
+varying vec4 f_color;
 varying vec2 f_uv;
 
 void main() {
@@ -36,7 +32,6 @@ void main() {
   }
 
   float specular = min(1.0, max(0.0, cookTorrance(L, V, N, roughness, fresnel)));
-  //float specular = max(0.0, beckmann(L, V, N, roughness)); // used in gl-surface3d
 
   float diffuse  = min(kambient + kdiffuse * max(dot(N, L), 0.0), 1.0);
 

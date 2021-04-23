@@ -71,11 +71,10 @@ export class Triangle {
     queue.push(this);
     while(true) {
       const item = queue.pop()
-      console.log('loop', item.depth)
-      if(item.depth === 3) {
+      if(item.depth >= 4) {
         break;
       }
-      const splitted = this.split4(item)
+      const splitted = item.split4()
       queue.push(...splitted)
     }
     return queue.data;

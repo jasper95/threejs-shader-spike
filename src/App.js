@@ -1,5 +1,5 @@
 import './App.css';
-import Scene from './scene';
+import Scene from './plot';
 
 function App() {
   return (
